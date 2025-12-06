@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="inside.css">
+</head>
+<body>
+        <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <i class="fas fa-boxes-stacked"></i>
+            <div class="logo-text">
+                <h1>Goods Stock Management</h1>
+                <p>Carriers Sewa Nepal Vision</p>
+            </div>
+        </div>
+        <div class="user-info">
+            <div class="user-avatar">CS</div>
+            <div>
+                <p>Admin User</p>
+                <small>Last login: Today, 10:30 AM</small>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#add-stock"><i class="fas fa-plus-circle"></i> Add Stock</a></li>
+            <li><a href="#view-stock"><i class="fas fa-boxes"></i> View Stock</a></li>
+            <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            <li><a href="#suppliers"><i class="fas fa-truck"></i> Suppliers</a></li>
+            <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Dashboard -->
+        <section id="dashboard" class="section">
+            <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+            
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <strong>Low Stock Alert:</strong> 5 items are running low on stock. Please restock soon.
+                </div>
+            </div>
+            
+            <div class="stats-cards">
+                <div class="stat-card total">
+                    <i class="fas fa-box"></i>
+                    <div class="stat-info">
+                        <h3>Total Items</h3>
+                        <p id="total-items">150</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card low">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div class="stat-info">
+                        <h3>Low Stock Items</h3>
+                        <p id="low-stock">5</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card categories">
+                    <i class="fas fa-tags"></i>
+                    <div class="stat-info">
+                        <h3>Categories</h3>
+                        <p id="total-categories">8</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card suppliers">
+                    <i class="fas fa-truck"></i>
+                    <div class="stat-info">
+                        <h3>Suppliers</h3>
+                        <p id="total-suppliers">12</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="fas fa-plus"></i></div>
+                    <div>
+                        <p><strong>50 Laptops</strong> added to stock</p>
+                        <small>2 hours ago by Admin</small>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="fas fa-edit"></i></div>
+                    <div>
+                        <p><strong>T-Shirt quantity</strong> updated from 80 to 100</p>
+                        <small>Yesterday by Manager</small>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div>
+                        <p><strong>Rice stock</strong> is running low (below threshold)</p>
+                        <small>2 days ago by System</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Add Stock -->
+        <section id="add-stock" class="section" style="display: none;">
+            <h2><i class="fas fa-plus-circle"></i> Add New Stock</h2>
+            
+            <form id="add-stock-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="item-name">Item Name *</label>
+                        <input type="text" id="item-name" name="item-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sku">SKU Code</label>
+                        <input type="text" id="sku" name="sku" placeholder="Auto-generated if empty">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="food">Food & Beverages</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="office">Office Supplies</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" name="quantity" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="unit">Unit</label>
+                        <select id="unit" name="unit">
+                            <option value="pcs">Pieces</option>
+                            <option value="kg">Kilograms</option>
+                            <option value="liters">Liters</option>
+                            <option value="boxes">Boxes</option>
+                            <option value="packs">Packs</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="price">Price per Unit ($)</label>
+                        <input type="number" id="price" name="price" min="0" step="0.01">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="supplier">Supplier *</label>
+                        <select id="supplier" name="supplier" required>
+                            <option value="">Select Supplier</option>
+                            <option value="ABC Suppliers">ABC Suppliers</option>
+                            <option value="XYZ Textiles">XYZ Textiles</option>
+                            <option value="Food Corp">Food Corp</option>
+                            <option value="Tech Distributors">Tech Distributors</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reorder-level">Reorder Level</label>
+                        <input type="number" id="reorder-level" name="reorder-level" min="1" value="10">
+                        <small>Alert when stock falls below this level</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="3" placeholder="Add any additional details about the item..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Add Stock Item
+                    </button>
+                    <button type="reset" class="btn btn-outline">
+                        <i class="fas fa-undo"></i> Reset Form
+                    </button>
+                </div>
+            </form>
+        </section>
+        
+        <!-- View Stock -->
+        <section id="view-stock" class="section" style="display: none;">
+            <h2><i class="fas fa-boxes"></i> Current Stock</h2>
+            
+            <div class="filter-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-stock" placeholder="Search items...">
+                </div>
+                
+                <select id="filter-category">
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="food">Food & Beverages</option>
+                    <option value="furniture">Furniture</option>
+                </select>
+                
+                <select id="filter-status">
+                    <option value="">All Status</option>
+                    <option value="in-stock">In Stock</option>
+                    <option value="low">Low Stock</option>
+                    <option value="out">Out of Stock</option>
+                </select>
+                
+                <button id="export-btn" class="btn btn-outline">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+            </div>
+            
+            <div class="table-container">
+                <table id="stock-table">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                            <th>Supplier</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stock-table-body">
+                        <!-- Stock data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination">
+                <button id="prev-page" class="btn btn-outline"><i class="fas fa-chevron-left"></i> Previous</button>
+                <span id="page-info">Page 1 of 3</span>
+                <button id="next-page" class="btn btn-outline">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+        
+        <!-- Reports -->
+        <section id="reports" class="section" style="display: none;">
+            <h2><i class="fas fa-chart-bar"></i> Reports & Analytics</h2>
+            
+            <div class="tabs">
+                <button class="tab active" data-tab="stock-report">Stock Report</button>
+                <button class="tab" data-tab="monthly-report">Monthly Report</button>
+                <button class="tab" data-tab="category-report">Category Analysis</button>
+            </div>
+            
+            <div id="stock-report" class="tab-content active">
+                <div class="chart-container" id="stock-chart"></div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Category</th>
+                                <th>Current Stock</th>
+                                <th>Low Stock Alert</th>
+                                <th>Value ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="report-table-body">
+                            <!-- Report data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="monthly-report" class="tab-content">
+                <div class="chart-container" id="monthly-chart"></div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Stock Added</th>
+                                <th>Stock Sold/Used</th>
+                                <th>Remaining Stock</th>
+                                <th>Growth %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>January 2023</td>
+                                <td>300</td>
+                                <td>250</td>
+                                <td>50</td>
+                                <td class="status-in-stock">+15%</td>
+                            </tr>
+                            <tr>
+                                <td>February 2023</td>
+                                <td>400</td>
+                                <td>350</td>
+                                <td>100</td>
+                                <td class="status-in-stock">+25%</td>
+                            </tr>
+                            <tr>
+                                <td>March 2023</td>
+                                <td>450</td>
+                                <td>400</td>
+                                <td>150</td>
+                                <td class="status-in-stock">+20%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="category-report" class="tab-content">
+                <div class="chart-container" id="category-chart"></div>
+                
+                <p>Category-wise stock distribution and analysis will appear here.</p>
+            </div>
+        </section>
+        
+        <!-- Suppliers Section -->
+        <section id="suppliers" class="section" style="display: none;">
+            <h2><i class="fas fa-truck"></i> Suppliers</h2>
+            <p>Manage your suppliers and view supplier performance metrics.</p>
+            <!-- Supplier content would go here -->
+        </section>
+        
+        <!-- Settings Section -->
+        <section id="settings" class="section" style="display: none;">
+            <h2><i class="fas fa-cog"></i> Settings</h2>
+            <p>Configure system settings, user roles, and preferences.</p>
+            <!-- Settings content would go here -->
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Carriers Sewa Nepal Vision. All rights reserved.</p>
+        <p>Goods Stock Management System v2.0</p>
+    </footer>
+
+    <!-- Modal for Edit Item -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Stock Item</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-stock-form">
+                    <!-- Edit form will be populated dynamically -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<style src="inside.js"></style>
+</html>

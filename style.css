@@ -138,7 +138,7 @@ nav ul li a:hover {
 /* --- 3. Hero Section --- */
 .hero {
     
-    background: linear-gradient(135deg, rgba(0, 77, 153, 0.95), rgba(0, 170, 255, 0.8)), url('') center center no-repeat;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80%27') center center no-repeat;
     background-size: cover;
     height: 70vh; 
     display: flex;
@@ -172,11 +172,19 @@ nav ul li a:hover {
 }
 
 .cta-button {
-    margin-top: 20px;
+    margin-top: 40px;
+    background-color: #141e7a;
+    cursor: pointer;
+    font-size: .5rem;
+    font-weight: 700px;
+
+
+
    
 }
 .cta-button a{
-    font-size: 15px;
+    font-size: 25px;
+    color: white;
 }
 
 /* --- 4. About Section Styling --- */
@@ -293,4 +301,127 @@ nav ul li a:hover {
     height: 50px;
     padding-top: 15px;
     margin-top: 20px;
+}
+
+/* --- 6. Keyframe Animations (Added new ones) --- */
+
+/* Existing animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes highlightPulse {
+    0% { text-shadow: 0 0 5px rgba(255, 204, 0, 0.5); }
+    100% { text-shadow: 0 0 15px rgba(255, 204, 0, 1); }
+}
+
+/* New: Subtle background fade for Hero */
+@keyframes fadeInBackground {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+}
+
+/* New: Fade in from Left for About text */
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* New: Fade in from Right for About image */
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* New: Icon Bounce on hover */
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* --- 7. Responsiveness --- */
+/* --- Tablet and Smaller Desktops (Max width 992px) --- */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column; /* Stack About content */
+        text-align: center;
+    }
+
+    .about-image {
+        order: -1; /* Move image above text on smaller screens */
+        margin-bottom: 20px;
+    }
+
+    .about-image img {
+        max-height: 300px;
+        object-fit: cover;
+    }
+}
+
+/* --- Mobile Devices (Max width 768px) --- */
+@media (max-width: 768px) {
+    /* Header/Nav Adjustments */
+    header {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    header h4 {
+        font-size: 1em;
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack nav links */
+        align-items: stretch;
+    }
+
+    nav li a {
+        text-align: center;
+        border-bottom: 1px solid #004085;
+    }
+    
+    nav li:last-child a {
+        border-bottom: none;
+    }
+
+    .nav-login-btn {
+        margin-left: 0;
+        margin-top: 5px;
+        border-radius: 0;
+    }
+
+    /* Hero Section Adjustments */
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h2 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    /* General Section Adjustments */
+    main section {
+        padding: 40px 0;
+    }
+
+    .section-heading {
+        font-size: 1.5em;
+    }
+
+    .section-subheading {
+        font-size: 1em;
+    }
+
+    /* Features Grid Adjustments */
+    .features-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
 }
