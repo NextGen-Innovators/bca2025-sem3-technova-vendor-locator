@@ -8,17 +8,33 @@
 </head>
 <body>
     <div class="auth-container">
-        <header>
+    <header>
             <img src="WhatsApp Image 2025-12-06 at 11.58.42 AM.jpeg" alt="Company Logo" class="logo">
             <h2>Welcome to Carriers Sewa Nepal Vision</h2>
             <p>Goods Stock Management System Access</p>
-        </header>
-
-        <div class="form-toggle-container">
+    </header>
+    <div class="form-toggle-container">
             <button id="show-signin" class="active">Sign In</button>
             <button id="show-signup">Sign Up</button>
         </div>
 
+        <!-- Forgot Password Form -->
+        <form id="forgot-password-form" class="forgot-password-form">
+            <h3>Reset Password</h3>
+            <p style="margin-bottom: 20px; color: #666; font-size: 14px;">Enter your email address and we'll send you instructions to reset your password.</p>
+            <div class="input-group">
+                <label for="reset-email">Email Address</label>
+                <input type="email" id="reset-email" placeholder="e.g., john.doe@carrierssewa.com" required>
+            </div>
+            <button type="submit" class="submit-btn">Send Reset Link</button>
+            <div class="back-to-login">
+                <a href="#" id="back-to-login"><i class="fas fa-arrow-left"></i> Back to Sign In</a>
+            </div>
+            <p class="error-message" id="forgot-error"></p>
+            <p class="error-message" id="forgot-success" style="color: #23d160; display: none;"></p>
+        </form>
+
+        <!-- Sign In Form -->
         <form id="signin-form" class="auth-form">
             <h3>Sign In</h3>
             <div class="input-group">
@@ -29,10 +45,28 @@
                 <label for="signin-password">Password</label>
                 <input type="password" id="signin-password" placeholder="••••••••" required>
             </div>
+            <div class="forgot-password">
+                <a href="#" id="show-forgot-password">Forgot Password?</a>
+            </div>
             <button type="submit" class="submit-btn">Sign In</button>
+            
+            <div class="divider">
+                <span>Or continue with</span>
+            </div>
+            
+            <div class="social-login">
+                <button type="button" class="social-btn facebook" id="facebook-login">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+                <button type="button" class="social-btn google" id="google-login">
+                    <i class="fab fa-google"></i> Google
+                </button>
+            </div>
+            
             <p class="error-message" id="signin-error"></p>
         </form>
 
+        <!-- Sign Up Form -->
         <form id="signup-form" class="auth-form hidden">
             <h3>Create Account</h3>
             <div class="input-group">
@@ -52,8 +86,23 @@
                 <input type="password" id="signup-confirm-password" placeholder="Re-enter password" required>
             </div>
             <button type="submit" class="submit-btn">Sign Up</button>
+            
+            <div class="divider">
+                <span>Or sign up with</span>
+            </div>
+            
+            <div class="social-login">
+                <button type="button" class="social-btn facebook" id="facebook-signup">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+                <button type="button" class="social-btn google" id="google-signup">
+                    <i class="fab fa-google"></i> Google
+                </button>
+            </div>
+            
             <p class="error-message" id="signup-error"></p>
         </form>
+    </div>
     </div>
 
     <footer>
@@ -62,45 +111,108 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Form elements
             const signInForm = document.getElementById('signin-form');
             const signUpForm = document.getElementById('signup-form');
+            const forgotPasswordForm = document.getElementById('forgot-password-form');
             const showSignInBtn = document.getElementById('show-signin');
             const showSignUpBtn = document.getElementById('show-signup');
+            const showForgotPassword = document.getElementById('show-forgot-password');
+            const backToLogin = document.getElementById('back-to-login');
+            
+            // Error messages
             const signInError = document.getElementById('signin-error');
             const signUpError = document.getElementById('signup-error');
+            const forgotError = document.getElementById('forgot-error');
+            const forgotSuccess = document.getElementById('forgot-success');
             
-            // --- Form Toggling ---
-            showSignInBtn.addEventListener('click', () => {
-                signUpForm.classList.add('hidden');
-                signInForm.classList.remove('hidden');
-                showSignUpBtn.classList.remove('active');
-                showSignInBtn.classList.add('active');
-                signInError.textContent = '';
-                signUpError.textContent = '';
-            });
-
-            showSignUpBtn.addEventListener('click', () => {
-                signInForm.classList.add('hidden');
-                signUpForm.classList.remove('hidden');
-                showSignInBtn.classList.remove('active');
-                showSignUpBtn.classList.add('active');
-                signInError.textContent = '';
-                signUpError.textContent = '';
-            });
-
+            // Social login buttons
+            const facebookLogin = document.getElementById('facebook-login');
+            const googleLogin = document.getElementById('google-login');
+            const facebookSignup = document.getElementById('facebook-signup');
+            const googleSignup = document.getElementById('google-signup');
+            
             // --- Dummy User Storage (Insecure, for Demo ONLY) ---
             const DUMMY_USER = {
                 email: 'admin@carrierssewa.com',
                 password: 'password123'
             };
-
+            
+            // --- Form Toggling Functions ---
+            function showSignIn() {
+                signUpForm.classList.add('hidden');
+                signInForm.classList.remove('hidden');
+                forgotPasswordForm.classList.remove('active');
+                showSignUpBtn.classList.remove('active');
+                showSignInBtn.classList.add('active');
+                signInError.textContent = '';
+                signUpError.textContent = '';
+                forgotError.textContent = '';
+                forgotSuccess.style.display = 'none';
+            }
+            
+            function showSignUp() {
+                signInForm.classList.add('hidden');
+                signUpForm.classList.remove('hidden');
+                forgotPasswordForm.classList.remove('active');
+                showSignInBtn.classList.remove('active');
+                showSignUpBtn.classList.add('active');
+                signInError.textContent = '';
+                signUpError.textContent = '';
+                forgotError.textContent = '';
+                forgotSuccess.style.display = 'none';
+            }
+            
+            function showForgotPasswordForm() {
+                signInForm.classList.add('hidden');
+                signUpForm.classList.add('hidden');
+                forgotPasswordForm.classList.add('active');
+                showSignInBtn.classList.remove('active');
+                showSignUpBtn.classList.remove('active');
+                signInError.textContent = '';
+                signUpError.textContent = '';
+                forgotError.textContent = '';
+                forgotSuccess.style.display = 'none';
+            }
+            
+            // --- Form Toggling Event Listeners ---
+            showSignInBtn.addEventListener('click', showSignIn);
+            showSignUpBtn.addEventListener('click', showSignUp);
+            showForgotPassword.addEventListener('click', (e) => {
+                e.preventDefault();
+                showForgotPasswordForm();
+            });
+            backToLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                showSignIn();
+            });
+            
+            // --- Social Login Functions ---
+            function handleSocialLogin(provider, action) {
+                // In a real app, this would redirect to OAuth provider
+                // For demo purposes, we'll just show an alert
+                alert(`In a real application, this would redirect to ${provider} for ${action}.`);
+                
+                // Simulate successful login after 1 second
+                setTimeout(() => {
+                    alert(`Successfully ${action === 'login' ? 'logged in' : 'signed up'} with ${provider}!`);
+                    window.location.href = 'inside.html';
+                }, 1000);
+            }
+            
+            // --- Social Login Event Listeners ---
+            facebookLogin.addEventListener('click', () => handleSocialLogin('Facebook', 'login'));
+            googleLogin.addEventListener('click', () => handleSocialLogin('Google', 'login'));
+            facebookSignup.addEventListener('click', () => handleSocialLogin('Facebook', 'signup'));
+            googleSignup.addEventListener('click', () => handleSocialLogin('Google', 'signup'));
+            
             // --- Sign In Logic ---
             signInForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 signInError.textContent = '';
                 const email = document.getElementById('signin-email').value;
                 const password = document.getElementById('signin-password').value;
-
+                
                 if (email === DUMMY_USER.email && password === DUMMY_USER.password) {
                     // Successful Sign In - Redirect to the inside page
                     window.location.href = 'inside.html';
@@ -108,29 +220,68 @@
                     signInError.textContent = 'Invalid email or password. Please try again.';
                 }
             });
-
+            
             // --- Sign Up Logic ---
             signUpForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 signUpError.textContent = '';
+                const name = document.getElementById('signup-name').value;
                 const email = document.getElementById('signup-email').value;
                 const password = document.getElementById('signup-password').value;
                 const confirmPassword = document.getElementById('signup-confirm-password').value;
-
+                
                 if (password !== confirmPassword) {
                     signUpError.textContent = 'Passwords do not match.';
                     return;
                 }
-
+                
+                if (password.length < 8) {
+                    signUpError.textContent = 'Password must be at least 8 characters.';
+                    return;
+                }
+                
                 // In a real application, you'd send this data to a server to be stored.
                 // For this demo, we'll pretend it worked and immediately log the user in.
-                // NOTE: This overwrites the dummy user for the session, for simplicity.
                 DUMMY_USER.email = email;
                 DUMMY_USER.password = password;
-
-                alert('Account created successfully! You are now logged in.');
+                
+                alert(`Welcome ${name}! Your account has been created successfully!`);
                 // Successful Sign Up - Redirect to the inside page
                 window.location.href = 'inside.html';
+            });
+            
+            // --- Forgot Password Logic ---
+            forgotPasswordForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                forgotError.textContent = '';
+                forgotSuccess.style.display = 'none';
+                
+                const email = document.getElementById('reset-email').value;
+                
+                if (!email) {
+                    forgotError.textContent = 'Please enter your email address.';
+                    return;
+                }
+                
+                // Simple email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    forgotError.textContent = 'Please enter a valid email address.';
+                    return;
+                }
+                
+                // In a real application, you would send a reset link to the user's email
+                // For this demo, we'll just show a success message
+                forgotSuccess.textContent = `Password reset link has been sent to ${email}. Please check your inbox.`;
+                forgotSuccess.style.display = 'block';
+                
+                // Clear the form
+                document.getElementById('reset-email').value = '';
+                
+                // Return to login after 3 seconds
+                setTimeout(() => {
+                    showSignIn();
+                }, 3000);
             });
         });
     </script>
