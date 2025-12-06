@@ -134,3 +134,163 @@ nav ul li a:hover {
     color: var(--text-light);
     border-color: var(--text-light);
 }
+
+/* --- 3. Hero Section --- */
+.hero {
+    
+    background: linear-gradient(135deg, rgba(0, 77, 153, 0.95), rgba(0, 170, 255, 0.8)), url('') center center no-repeat;
+    background-size: cover;
+    height: 70vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInBackground 1.5s ease-out;
+}
+
+.hero-content {
+    color: var(--text-light);
+    max-width: 900px;
+    padding: 20px;
+   
+}
+
+.hero-content h2 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+}
+
+.highlight-text {
+    color: var(--accent-color);
+    display: inline-block;
+    animation: highlightPulse 2s infinite alternate;
+}
+
+.cta-button {
+    margin-top: 20px;
+   
+}
+.cta-button a{
+    font-size: 15px;
+}
+
+/* --- 4. About Section Styling --- */
+.about-section {
+    background-color: var(--bg-light);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.about-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    text-align: left;
+}
+
+.about-text {
+    flex: 1;
+    padding-right: 20px;
+    
+}
+
+.about-text p {
+    margin-bottom: 35px;
+    font-size: 1.1em;
+    color: var(--text-dark);
+}
+
+.about-image {
+    height: 350px; 
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+.about-image img{
+    height: 370px;
+    margin-bottom: 15px;
+}
+.about-image:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 6px 18px rgba(58, 58, 58, 0.986);
+}
+
+.learn-more-link {
+    color: var(--primary-color);
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+}
+
+.learn-more-link:hover {
+    color: var(--secondary-color);
+    transform: translateX(5px);
+}
+
+
+/* --- 5. Features Section Styling --- */
+.features-section {
+    background-color: var(--bg-secondary);
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('data:image/svg+xml,...');
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: var(--bg-light);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    font-size: 2.5em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    color: var(--primary-color);
+    animation: iconBounce 0.5s ease;
+}
+
+.feature-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.feature-card p {
+    color: #6c757d;
+}
+
+/* --6 footer  */
+.footer-section{
+    text-align: center;
+    background-color:rgb(3, 20, 44);
+    color: white;
+    height: 50px;
+    padding-top: 15px;
+    margin-top: 20px;
+}
