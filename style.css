@@ -344,12 +344,12 @@ nav ul li a:hover {
 /* --- Tablet and Smaller Desktops (Max width 992px) --- */
 @media (max-width: 992px) {
     .about-content {
-        flex-direction: column; /* Stack About content */
+        flex-direction: column; 
         text-align: center;
     }
 
     .about-image {
-        order: -1; /* Move image above text on smaller screens */
+        order: -1; 
         margin-bottom: 20px;
     }
 
@@ -375,7 +375,7 @@ nav ul li a:hover {
     }
 
     nav ul {
-        flex-direction: column; /* Stack nav links */
+        flex-direction: column;
         align-items: stretch;
     }
 
@@ -422,6 +422,6 @@ nav ul li a:hover {
 
     /* Features Grid Adjustments */
     .features-grid {
-        grid-template-columns: 1fr; /* Single column layout */
+        grid-template-columns: 1fr;
     }
 }
