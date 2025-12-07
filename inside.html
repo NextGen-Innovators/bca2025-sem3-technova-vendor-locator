@@ -3,369 +3,473 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Stock Management - Carriers Sewa Nepal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="inside.css">
 </head>
 <body>
-        <!-- Header -->
     <header>
-        <div class="logo-container">
-            <i class="fas fa-boxes-stacked"></i>
-            <div class="logo-text">
-                <h1>Goods Stock Management</h1>
-                <p>Carriers Sewa Nepal Vision</p>
+        <div class="header-top">
+            <div></div>
+            <div class="last-login">
+                <i class="fas fa-clock"></i> Last Login: <span id="last-login-time">Loading...</span>
             </div>
         </div>
-        <div class="user-info">
-            <div class="user-avatar">CS</div>
-            <div>
-                <p>Admin User</p>
-                <small>Last login: Today, 10:30 AM</small>
-            </div>
-        </div>
+        <h1><i class="fas fa-boxes"></i> Stock Management System</h1>
+        <p>Carriers Sewa Nepal Vision</p>
     </header>
-
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href="#add-stock"><i class="fas fa-plus-circle"></i> Add Stock</a></li>
-            <li><a href="#view-stock"><i class="fas fa-boxes"></i> View Stock</a></li>
-            <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
-            <li><a href="#suppliers"><i class="fas fa-truck"></i> Suppliers</a></li>
-            <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
+    
     <div class="container">
-        <!-- Dashboard -->
-        <section id="dashboard" class="section">
-            <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
-            
-            <div class="alert alert-warning">
-                <i class="fas fa-exclamation-triangle"></i>
-                <div>
-                    <strong>Low Stock Alert:</strong> 5 items are running low on stock. Please restock soon.
-                </div>
+        <!-- Navigation -->
+        <div class="nav">
+            <div class="nav-item active" data-tab="dashboard">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
             </div>
-            
-            <div class="stats-cards">
-                <div class="stat-card total">
-                    <i class="fas fa-box"></i>
-                    <div class="stat-info">
-                        <h3>Total Items</h3>
-                        <p id="total-items">150</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card low">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <div class="stat-info">
-                        <h3>Low Stock Items</h3>
-                        <p id="low-stock">5</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card categories">
-                    <i class="fas fa-tags"></i>
-                    <div class="stat-info">
-                        <h3>Categories</h3>
-                        <p id="total-categories">8</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card suppliers">
-                    <i class="fas fa-truck"></i>
-                    <div class="stat-info">
-                        <h3>Suppliers</h3>
-                        <p id="total-suppliers">12</p>
-                    </div>
-                </div>
+            <div class="nav-item" data-tab="add">
+                <i class="fas fa-plus-circle"></i> Add Stock
             </div>
-            
-            <div class="recent-activity">
-                <h3>Recent Activity</h3>
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-plus"></i></div>
-                    <div>
-                        <p><strong>50 Laptops</strong> added to stock</p>
-                        <small>2 hours ago by Admin</small>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-edit"></i></div>
-                    <div>
-                        <p><strong>T-Shirt quantity</strong> updated from 80 to 100</p>
-                        <small>Yesterday by Manager</small>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                    <div>
-                        <p><strong>Rice stock</strong> is running low (below threshold)</p>
-                        <small>2 days ago by System</small>
-                    </div>
-                </div>
+            <div class="nav-item" data-tab="view">
+                <i class="fas fa-eye"></i> View Stock
             </div>
-        </section>
+            <div class="nav-item" data-tab="old">
+                <i class="fas fa-archive"></i> Old Stock
+            </div>
+            <div class="nav-item" data-tab="reports">
+                <i class="fas fa-chart-bar"></i> Reports
+            </div>
+        </div>
         
-        <!-- Add Stock -->
-        <section id="add-stock" class="section" style="display: none;">
-            <h2><i class="fas fa-plus-circle"></i> Add New Stock</h2>
-            
-            <form id="add-stock-form">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="item-name">Item Name *</label>
-                        <input type="text" id="item-name" name="item-name" required>
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab active">
+            <div class="tab-content">
+                <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+                <p>Welcome to the Stock Management System. Monitor your inventory here.</p>
+                
+                <div class="stats">
+                    <div class="stat-box">
+                        <h3>Total Items</h3>
+                        <div class="number" id="total-items">0</div>
+                        <p>In current stock</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Categories</h3>
+                        <div class="number" id="total-categories">0</div>
+                        <p>Different categories</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>In Transit</h3>
+                        <div class="number" id="total-transit">0</div>
+                        <p>Items departed</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Recent Additions</h3>
+                        <div class="number" id="recent-items">0</div>
+                        <p>Last 7 days</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Add Stock Tab -->
+        <div id="add" class="tab">
+            <div class="tab-content">
+                <h2><i class="fas fa-plus-circle"></i> Add New Stock</h2>
+                <p>Add new items to your inventory. All fields are required except date.</p>
+                
+                <form id="stock-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Item Name *</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sku">SKU Code *</label>
+                            <input type="text" id="sku" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category">Category *</label>
+                            <select id="category" required>
+                                <option value="">Select</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="clothing">Clothing</option>
+                                <option value="food">Food</option>
+                                <option value="office">Office</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity">Quantity *</label>
+                            <input type="number" id="quantity" min="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="transport-amount">Transport Amount (Rs) *</label>
+                            <input type="number" id="transport-amount" min="1" step="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="supplier">Supplier *</label>
+                            <input type="text" id="supplier" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departure-address">From (District)</label>
+                            <select id="departure-address">
+                                <option value="">Select District</option>
+                                <option value="Kathmandu">Kathmandu</option>
+                                <option value="Lalitpur">Lalitpur</option>
+                                <option value="Bhaktapur">Bhaktapur</option>
+                                <option value="Pokhara">Pokhara</option>
+                                <option value="Chitwan">Chitwan</option>
+                                <option value="Biratnagar">Biratnagar</option>
+                                <option value="Bharatpur">Bharatpur</option>
+                                <option value="Butwal">Butwal</option>
+                                <option value="Dharan">Dharan</option>
+                                <option value="Nepalgunj">Nepalgunj</option>
+                                <option value="Birendranagar">Birendranagar</option>
+                                <option value="Hetauda">Hetauda</option>
+                                <option value="Janakpur">Janakpur</option>
+                                <option value="Itahari">Itahari</option>
+                                <option value="Tulsipur">Tulsipur</option>
+                                <option value="Dhankuta">Dhankuta</option>
+                                <option value="Baglung">Baglung</option>
+                                <option value="Dhangadhi">Dhangadhi</option>
+                                <option value="Mahendranagar">Mahendranagar</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="arrival-address">To (District)</label>
+                            <select id="arrival-address">
+                                <option value="">Select District</option>
+                                <option value="Kathmandu">Kathmandu</option>
+                                <option value="Lalitpur">Lalitpur</option>
+                                <option value="Bhaktapur">Bhaktapur</option>
+                                <option value="Pokhara">Pokhara</option>
+                                <option value="Chitwan">Chitwan</option>
+                                <option value="Biratnagar">Biratnagar</option>
+                                <option value="Bharatpur">Bharatpur</option>
+                                <option value="Butwal">Butwal</option>
+                                <option value="Dharan">Dharan</option>
+                                <option value="Nepalgunj">Nepalgunj</option>
+                                <option value="Birendranagar">Birendranagar</option>
+                                <option value="Hetauda">Hetauda</option>
+                                <option value="Janakpur">Janakpur</option>
+                                <option value="Itahari">Itahari</option>
+                                <option value="Tulsipur">Tulsipur</option>
+                                <option value="Dhankuta">Dhankuta</option>
+                                <option value="Baglung">Baglung</option>
+                                <option value="Dhangadhi">Dhangadhi</option>
+                                <option value="Mahendranagar">Mahendranagar</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="sku">SKU Code</label>
-                        <input type="text" id="sku" name="sku" placeholder="Auto-generated if empty">
+                        <label for="date">Stock Date *</label>
+                        <input type="date" id="date" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="category">Category *</label>
-                        <select id="category" name="category" required>
-                            <option value="">Select Category</option>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Add to Stock
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="form-message" class="message" style="display: none;"></div>
+            </div>
+        </div>
+        
+        <!-- View Stock Tab -->
+        <div id="view" class="tab">
+            <div class="tab-content">
+                <h2><i class="fas fa-eye"></i> Current Stock</h2>
+                
+                <div class="table-responsive">
+                    <table id="current-stock">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>SKU Code</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Transport Amount (Rs)</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="current-stock-body">
+                            <!-- Current stock will appear here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Old Stock Tab -->
+        <div id="old" class="tab">
+            <div class="tab-content">
+                <h2><i class="fas fa-archive"></i> Old Stock</h2>
+                <p>Items archived from current stock. You can restore them back if needed.</p>
+                
+                <div class="table-responsive">
+                    <table id="old-stock">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>SKU Code</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Transport Amount (Rs)</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Date Added</th>
+                                <th>Archived On</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="old-stock-body">
+                            <!-- Old stock will appear here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Reports Tab -->
+        <div id="reports" class="tab">
+            <div class="tab-content">
+                <h2><i class="fas fa-chart-bar"></i> Stock Reports</h2>
+                <p>Generate and view stock reports based on different criteria.</p>
+                
+                <div class="report-filters">
+                    <h3>Filter Report</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="report-type">Report Type</label>
+                            <select id="report-type">
+                                <option value="monthly">Monthly Summary</option>
+                                <option value="category">By Category</option>
+                                <option value="supplier">By Supplier</option>
+                                <option value="status">By Status</option>
+                                <option value="district">By District</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="month-select">Month</label>
+                            <select id="month-select">
+                                <option value="all">All Months</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="year-select">Year</label>
+                            <select id="year-select">
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="report-buttons">
+                        <button class="btn btn-primary" id="generate-report">
+                            <i class="fas fa-chart-line"></i> Generate Report
+                        </button>
+                        <button class="btn btn-success" id="print-report">
+                            <i class="fas fa-print"></i> Print Report
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-pie"></i>
+                        <p>Chart will appear here after generating report</p>
+                    </div>
+                </div>
+                
+                <div class="report-results">
+                    <h3>Report Results</h3>
+                    <div class="table-responsive">
+                        <table id="report-table">
+                            <thead>
+                                <tr>
+                                    <th>Category/Period</th>
+                                    <th>Items Count</th>
+                                    <th>Total Quantity</th>
+                                    <th>Total Transport Amount (Rs)</th>
+                                    <th>Average Transport (Rs)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="report-table-body">
+                                <!-- Report results will appear here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Edit Stock Item</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-name">Item Name *</label>
+                        <input type="text" id="edit-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-sku">SKU Code *</label>
+                        <input type="text" id="edit-sku" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-category">Category *</label>
+                        <select id="edit-category" required>
+                            <option value="">Select</option>
                             <option value="electronics">Electronics</option>
                             <option value="clothing">Clothing</option>
-                            <option value="food">Food & Beverages</option>
-                            <option value="furniture">Furniture</option>
-                            <option value="office">Office Supplies</option>
+                            <option value="food">Food</option>
+                            <option value="office">Office</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="quantity">Quantity *</label>
-                        <input type="number" id="quantity" name="quantity" min="1" required>
+                        <label for="edit-quantity">Quantity *</label>
+                        <input type="number" id="edit-quantity" min="1" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-transport-amount">Transport Amount (Rs) *</label>
+                        <input type="number" id="edit-transport-amount" min="1" step="1" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="unit">Unit</label>
-                        <select id="unit" name="unit">
-                            <option value="pcs">Pieces</option>
-                            <option value="kg">Kilograms</option>
-                            <option value="liters">Liters</option>
-                            <option value="boxes">Boxes</option>
-                            <option value="packs">Packs</option>
+                        <label for="edit-supplier">Supplier *</label>
+                        <input type="text" id="edit-supplier" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-departure-address">Departure Address (District)</label>
+                        <select id="edit-departure-address">
+                            <option value="">Select Departure District</option>
+                            <option value="Kathmandu">Kathmandu</option>
+                            <option value="Lalitpur">Lalitpur</option>
+                            <option value="Bhaktapur">Bhaktapur</option>
+                            <option value="Pokhara">Pokhara</option>
+                            <option value="Chitwan">Chitwan</option>
+                            <option value="Biratnagar">Biratnagar</option>
+                            <option value="Bharatpur">Bharatpur</option>
+                            <option value="Butwal">Butwal</option>
+                            <option value="Dharan">Dharan</option>
+                            <option value="Nepalgunj">Nepalgunj</option>
+                            <option value="Birendranagar">Birendranagar</option>
+                            <option value="Hetauda">Hetauda</option>
+                            <option value="Janakpur">Janakpur</option>
+                            <option value="Itahari">Itahari</option>
+                            <option value="Tulsipur">Tulsipur</option>
+                            <option value="Dhankuta">Dhankuta</option>
+                            <option value="Baglung">Baglung</option>
+                            <option value="Dhangadhi">Dhangadhi</option>
+                            <option value="Mahendranagar">Mahendranagar</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="price">Price per Unit ($)</label>
-                        <input type="number" id="price" name="price" min="0" step="0.01">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="supplier">Supplier *</label>
-                        <select id="supplier" name="supplier" required>
-                            <option value="">Select Supplier</option>
-                            <option value="ABC Suppliers">ABC Suppliers</option>
-                            <option value="XYZ Textiles">XYZ Textiles</option>
-                            <option value="Food Corp">Food Corp</option>
-                            <option value="Tech Distributors">Tech Distributors</option>
+                        <label for="edit-arrival-address">Arrival Address (District)</label>
+                        <select id="edit-arrival-address">
+                            <option value="">Select Arrival District</option>
+                            <option value="Kathmandu">Kathmandu</option>
+                            <option value="Lalitpur">Lalitpur</option>
+                            <option value="Bhaktapur">Bhaktapur</option>
+                            <option value="Pokhara">Pokhara</option>
+                            <option value="Chitwan">Chitwan</option>
+                            <option value="Biratnagar">Biratnagar</option>
+                            <option value="Bharatpur">Bharatpur</option>
+                            <option value="Butwal">Butwal</option>
+                            <option value="Dharan">Dharan</option>
+                            <option value="Nepalgunj">Nepalgunj</option>
+                            <option value="Birendranagar">Birendranagar</option>
+                            <option value="Hetauda">Hetauda</option>
+                            <option value="Janakpur">Janakpur</option>
+                            <option value="Itahari">Itahari</option>
+                            <option value="Tulsipur">Tulsipur</option>
+                            <option value="Dhankuta">Dhankuta</option>
+                            <option value="Baglung">Baglung</option>
+                            <option value="Dhangadhi">Dhangadhi</option>
+                            <option value="Mahendranagar">Mahendranagar</option>
+                            <option value="Other">Other</option>
                         </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="reorder-level">Reorder Level</label>
-                        <input type="number" id="reorder-level" name="reorder-level" min="1" value="10">
-                        <small>Alert when stock falls below this level</small>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" rows="3" placeholder="Add any additional details about the item..."></textarea>
+                    <label for="edit-date">Stock Date *</label>
+                    <input type="date" id="edit-date" required>
                 </div>
                 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Add Stock Item
+                        <i class="fas fa-save"></i> Update Stock
                     </button>
-                    <button type="reset" class="btn btn-outline">
-                        <i class="fas fa-undo"></i> Reset Form
+                    <button type="button" class="btn btn-danger" id="archive-item-btn">
+                        <i class="fas fa-archive"></i> Archive Item
                     </button>
                 </div>
             </form>
-        </section>
-        
-        <!-- View Stock -->
-        <section id="view-stock" class="section" style="display: none;">
-            <h2><i class="fas fa-boxes"></i> Current Stock</h2>
-            
-            <div class="filter-section">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="search-stock" placeholder="Search items...">
-                </div>
-                
-                <select id="filter-category">
-                    <option value="">All Categories</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="clothing">Clothing</option>
-                    <option value="food">Food & Beverages</option>
-                    <option value="furniture">Furniture</option>
-                </select>
-                
-                <select id="filter-status">
-                    <option value="">All Status</option>
-                    <option value="in-stock">In Stock</option>
-                    <option value="low">Low Stock</option>
-                    <option value="out">Out of Stock</option>
-                </select>
-                
-                <button id="export-btn" class="btn btn-outline">
-                    <i class="fas fa-file-export"></i> Export
-                </button>
-            </div>
-            
-            <div class="table-container">
-                <table id="stock-table">
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Category</th>
-                            <th>Quantity</th>
-                            <th>Status</th>
-                            <th>Supplier</th>
-                            <th>Last Updated</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="stock-table-body">
-                        <!-- Stock data will be populated by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="pagination">
-                <button id="prev-page" class="btn btn-outline"><i class="fas fa-chevron-left"></i> Previous</button>
-                <span id="page-info">Page 1 of 3</span>
-                <button id="next-page" class="btn btn-outline">Next <i class="fas fa-chevron-right"></i></button>
-            </div>
-        </section>
-        
-        <!-- Reports -->
-        <section id="reports" class="section" style="display: none;">
-            <h2><i class="fas fa-chart-bar"></i> Reports & Analytics</h2>
-            
-            <div class="tabs">
-                <button class="tab active" data-tab="stock-report">Stock Report</button>
-                <button class="tab" data-tab="monthly-report">Monthly Report</button>
-                <button class="tab" data-tab="category-report">Category Analysis</button>
-            </div>
-            
-            <div id="stock-report" class="tab-content active">
-                <div class="chart-container" id="stock-chart"></div>
-                
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Item Name</th>
-                                <th>Category</th>
-                                <th>Current Stock</th>
-                                <th>Low Stock Alert</th>
-                                <th>Value ($)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="report-table-body">
-                            <!-- Report data will be populated by JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div id="monthly-report" class="tab-content">
-                <div class="chart-container" id="monthly-chart"></div>
-                
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Month</th>
-                                <th>Stock Added</th>
-                                <th>Stock Sold/Used</th>
-                                <th>Remaining Stock</th>
-                                <th>Growth %</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>January 2023</td>
-                                <td>300</td>
-                                <td>250</td>
-                                <td>50</td>
-                                <td class="status-in-stock">+15%</td>
-                            </tr>
-                            <tr>
-                                <td>February 2023</td>
-                                <td>400</td>
-                                <td>350</td>
-                                <td>100</td>
-                                <td class="status-in-stock">+25%</td>
-                            </tr>
-                            <tr>
-                                <td>March 2023</td>
-                                <td>450</td>
-                                <td>400</td>
-                                <td>150</td>
-                                <td class="status-in-stock">+20%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div id="category-report" class="tab-content">
-                <div class="chart-container" id="category-chart"></div>
-                
-                <p>Category-wise stock distribution and analysis will appear here.</p>
-            </div>
-        </section>
-        
-        <!-- Suppliers Section -->
-        <section id="suppliers" class="section" style="display: none;">
-            <h2><i class="fas fa-truck"></i> Suppliers</h2>
-            <p>Manage your suppliers and view supplier performance metrics.</p>
-            <!-- Supplier content would go here -->
-        </section>
-        
-        <!-- Settings Section -->
-        <section id="settings" class="section" style="display: none;">
-            <h2><i class="fas fa-cog"></i> Settings</h2>
-            <p>Configure system settings, user roles, and preferences.</p>
-            <!-- Settings content would go here -->
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Carriers Sewa Nepal Vision. All rights reserved.</p>
-        <p>Goods Stock Management System v2.0</p>
-    </footer>
-
-    <!-- Modal for Edit Item -->
-    <div id="edit-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Edit Stock Item</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="edit-stock-form">
-                    <!-- Edit form will be populated dynamically -->
-                </form>
-            </div>
         </div>
     </div>
+    
+    <footer>
+        <p>&copy; 2023 Carriers Sewa Nepal Vision. All rights reserved.</p>
+        <p class="footer-version">Stock Management System v2.3</p>
+    </footer>
 
+    <script src="inside.js"></script>
 </body>
-<style src="inside.js"></style>
 </html>
